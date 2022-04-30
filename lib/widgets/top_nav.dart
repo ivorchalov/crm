@@ -1,57 +1,20 @@
 import 'package:crm/constants/colors.dart';
 import 'package:crm/widgets/custom_text.dart';
+import 'package:crm/widgets/login_signup_large.dart';
+import 'package:crm/widgets/login_signup_small.dart';
 import 'package:crm/widgets/responsivewidget.dart';
 import 'package:crm/widgets/user_compact.dart';
 import 'package:flutter/material.dart';
 
 import 'menu.dart';
 
-Widget _buildMenuButtons(BuildContext context) {
-  return !ResponsiveWidget.isSmallScreen(context)
-      ? Row(
-          children: [
-            Stack(
-              children: [
-                IconButton(
-                    onPressed: () {},
-                    icon: Icon(
-                      Icons.notifications,
-                      color: dark.withOpacity(.7),
-                    )),
-                Positioned(
-                    top: 7,
-                    right: 7,
-                    child: Container(
-                      width: 12,
-                      height: 12,
-                      padding: EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                          color: active,
-                          borderRadius: BorderRadius.circular(30),
-                          border: Border.all(color: light, width: 2)),
-                    ))
-              ],
-            ),
-            IconButton(
-                onPressed: () {},
-                icon: Icon(
-                  Icons.settings,
-                  color: dark.withOpacity(.7),
-                )),
-            SizedBox(
-              width: 12,
-            ),
-            Container(
-              width: 1,
-              height: 32,
-              color: dark.withOpacity(.7),
-            ),
-            SizedBox(
-              width: 24,
-            ),
-          ],
-        )
-      : Container();
+Widget _buildAcc(BuildContext context) {
+  final isAuthorized = false;
+  return (isAuthorized)
+      ? UserCompact(name: "Ivan", surname: "Ivanov")
+      : ResponsiveWidget.isSmallScreen(context)
+          ? loginSignupSmall()
+          : LoginSignupLarge();
 }
 
 AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
@@ -59,18 +22,13 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
       leading: !ResponsiveWidget.isSmallScreen(context)
           ? Row(
               children: [
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: Container(
-                    padding: EdgeInsets.only(left: 14),
-                    child: Image.asset(
-                      "assets/icons/icon.png",
-                      width: 28,
-                    ),
+                Container(
+                  padding: EdgeInsets.only(left: 14),
+                  child: Image.asset(
+                    "assets/icons/icon.png",
+                    width: 28,
                   ),
-                )
+                ),
               ],
             )
           : IconButton(
@@ -89,8 +47,15 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
           weight: FontWeight.bold,
         )),
         Expanded(child: Container(child: MenuItems())),
-        _buildMenuButtons(context),
-        UserCompact(name: "Ivan", surname: "Ivanov")
+        Container(
+          width: 1,
+          height: 32,
+          color: dark.withOpacity(.7),
+        ),
+        SizedBox(
+          width: 24,
+        ),
+        _buildAcc(context)
       ]),
       backgroundColor: Colors.transparent,
       iconTheme: IconThemeData(color: dark),

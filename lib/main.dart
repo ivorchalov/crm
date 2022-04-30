@@ -1,4 +1,8 @@
 import 'package:crm/layout.dart';
+import 'package:crm/pages/large_home_screen.dart';
+import 'package:crm/pages/small_home_screen.dart';
+import 'package:crm/pages/table_example_screen.dart';
+import 'package:crm/widgets/responsivewidget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,7 +27,11 @@ class MyApp extends StatelessWidget {
             TargetPlatform.android: FadeUpwardsPageTransitionsBuilder(),
           }),
           primaryColor: Colors.blue),
-      home: AppLayout(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => AppLayout(),
+        '/table_example': (context) => TableExample(),
+        },
     );
   }
 }
