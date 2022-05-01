@@ -1,7 +1,7 @@
 import 'package:crm/constants/colors.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/menu.dart';
+import '../widgets/unauthorized_menu.dart';
 import '../widgets/table_example.dart';
 import '../widgets/top_nav.dart';
 
@@ -14,7 +14,7 @@ class TableExample extends StatelessWidget {
       key: scaffoldKey,
       appBar: topNavigationBar(context, scaffoldKey),
       drawer: Drawer(
-        child: MenuItems(
+        child: UnauthorizedMenuItems(
           isVertical: true,
         ),
       ),

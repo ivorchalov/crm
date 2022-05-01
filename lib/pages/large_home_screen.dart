@@ -1,3 +1,5 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:crm/widgets/footer_large.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -12,7 +14,17 @@ class LargeHomeScreen extends StatefulWidget {
 }
 
 class _LargeHomeScreenState extends State<LargeHomeScreen> {
-  String hoveredElement = "";
+  List<String> _data = [
+    "аренда / прокат / бронирование оборудования",
+    "учет оборудования / инвентаризация с использованием наклеек / штрих-кодов",
+    "быстрое формирование смет / счетов / договоров / закрывающих/ любых документов",
+    "база сотрудников / клиентов / контрагентов / площадок",
+    "поиск персонала для проектов через отправку запросов по баз",
+    "интеграция с банком",
+    "стабильная работа / блокировки иностранных серверов не помешают работе работе сервиса",
+    "поддержка 24/7",
+    "пробный период 3 месяца",
+  ];
 
   Widget _buildTitle() {
     return Container(
@@ -27,75 +39,50 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
     );
   }
 
-  Widget _buildFooter() {
+  Widget _buildPriceCards() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        PriceCard(
+          title: "План А",
+          price: 0,
+        ),
+        PriceCard(
+          title: "План Б",
+          price: 1000,
+        ),
+        PriceCard(
+          title: "План В",
+          price: 10000,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDescription() {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.1,
-      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-        CustomText(
-          text: "+7 (777) 77-77-77",
-          size: 20,
-          color: dark.withOpacity(.7),
-        ),
-        CustomText(
-          text: "crm.io",
-          size: 20,
-          color: dark.withOpacity(.7),
-        ),
-        CustomText(
-          text: "2022",
-          size: 20,
-          color: dark.withOpacity(.7),
-        ),
-        InkWell(
-          onTap: () {},
-          onHover: (val) {
-            if (val) {
-              setState(() {
-                hoveredElement = "Информация";
-              });
-            } else {
-              setState(() {
-                hoveredElement = "";
-              });
-            }
-          },
-          hoverColor: Colors.transparent,
-          child: CustomText(
-            text: "Информация",
-            color:
-                (hoveredElement == "Информация") ? dark : dark.withOpacity(.7),
-            textDecoration: (hoveredElement == "Информация")
-                ? TextDecoration.underline
-                : null,
-            size: 20,
-          ),
-        ),
-        InkWell(
-          onTap: () {},
-          onHover: (val) {
-            if (val) {
-              setState(() {
-                hoveredElement = "Обратная связь";
-              });
-            } else {
-              setState(() {
-                hoveredElement = "";
-              });
-            }
-          },
-          hoverColor: Colors.transparent,
-          child: CustomText(
-            text: "Обратная связь",
-            color: (hoveredElement == "Обратная связь")
-                ? dark
-                : dark.withOpacity(.7),
-            textDecoration: (hoveredElement == "Обратная связь")
-                ? TextDecoration.underline
-                : null,
-            size: 20,
-          ),
-        )
-      ]),
+      decoration:
+          BoxDecoration(color: light, borderRadius: BorderRadius.circular(10)),
+      padding: EdgeInsets.all(10),
+      margin: EdgeInsets.symmetric(
+          horizontal: MediaQuery.of(context).size.width * 0.09, vertical: 10),
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: ScrollPhysics(),
+        itemCount: _data.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: AutoSizeText(
+              _data[index],
+              minFontSize: 24,
+            ),
+            leading: Icon(
+              Icons.circle,
+              size: 15,
+            ),
+          );
+        },
+      ),
     );
   }
 
@@ -107,28 +94,12 @@ class _LargeHomeScreenState extends State<LargeHomeScreen> {
         padding: EdgeInsets.all(20),
         children: [
           _buildTitle(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              PriceCard(
-                title: "План А",
-                price: 0,
-              ),
-              PriceCard(
-                title: "План Б",
-                price: 1000,
-              ),
-              PriceCard(
-                title: "План В",
-                price: 10000,
-              ),
-            ],
-          ),
-          Container(
-            height: 500,
-          ),
           Divider(),
-          _buildFooter()
+          _buildDescription(),
+          Divider(),
+          _buildPriceCards(),
+          Divider(),
+          FooterLarge()
         ],
       ),
     );

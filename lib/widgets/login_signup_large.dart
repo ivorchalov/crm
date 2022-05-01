@@ -252,6 +252,9 @@ class _LoginSignupLargeState extends State<LoginSignupLarge> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
+        SizedBox(
+          width: 20,
+        ),
         _buildLogin(),
         SizedBox(
           width: 20,

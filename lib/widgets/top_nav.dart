@@ -2,20 +2,12 @@ import 'package:crm/constants/colors.dart';
 import 'package:crm/widgets/custom_text.dart';
 import 'package:crm/widgets/login_signup_large.dart';
 import 'package:crm/widgets/login_signup_small.dart';
+import 'package:crm/widgets/menu.dart';
 import 'package:crm/widgets/responsivewidget.dart';
 import 'package:crm/widgets/user_compact.dart';
 import 'package:flutter/material.dart';
 
-import 'menu.dart';
-
-Widget _buildAcc(BuildContext context) {
-  final isAuthorized = false;
-  return (isAuthorized)
-      ? UserCompact(name: "Ivan", surname: "Ivanov")
-      : ResponsiveWidget.isSmallScreen(context)
-          ? loginSignupSmall()
-          : LoginSignupLarge();
-}
+import 'unauthorized_menu.dart';
 
 AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
     AppBar(
@@ -39,23 +31,20 @@ AppBar topNavigationBar(BuildContext context, GlobalKey<ScaffoldState> key) =>
                 key.currentState?.openDrawer();
               }),
       elevation: 0,
-      title: Row(children: [
+      title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Visibility(
             child: CustomText(
           text: "CRM",
           color: lightGrey,
           weight: FontWeight.bold,
         )),
-        Expanded(child: Container(child: MenuItems())),
-        Container(
-          width: 1,
-          height: 32,
-          color: dark.withOpacity(.7),
-        ),
         SizedBox(
-          width: 24,
+          width: 20,
         ),
-        _buildAcc(context)
+        Expanded(
+          child: Menu(),
+        ),
+        //_buildAcc(context)
       ]),
       backgroundColor: Colors.transparent,
       iconTheme: IconThemeData(color: dark),
