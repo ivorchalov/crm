@@ -1,4 +1,5 @@
 import 'package:crm/widgets/custom_text.dart';
+import 'package:crm/widgets/neumorphismbutton.dart';
 import 'package:crm/widgets/responsivewidget.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _CreateProjectState extends State<CreateProject> {
         ? MediaQuery.of(context).size.width * 1.0
         : MediaQuery.of(context).size.width * 0.25;
 
-    return Container(
+    return NeumorphismButton(
         padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         width: ResponsiveWidget.isSmallScreen(context)
@@ -32,8 +33,8 @@ class _CreateProjectState extends State<CreateProject> {
         height: ResponsiveWidget.isSmallScreen(context)
             ? MediaQuery.of(context).size.height * 0.8
             : MediaQuery.of(context).size.height * 0.6,
-        decoration: BoxDecoration(
-            color: light, borderRadius: BorderRadius.circular(10)),
+        // decoration: BoxDecoration(
+        //     color: light, borderRadius: BorderRadius.circular(10)),
         child: InkWell(
           onTap: () {
             showDialog(
@@ -198,6 +199,9 @@ class _CreateProjectState extends State<CreateProject> {
                               ])),
                             )
                           ],
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Row(
                           children: [

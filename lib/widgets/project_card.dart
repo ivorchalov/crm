@@ -25,7 +25,14 @@ class _ProjectCardState extends State<ProjectCard> {
             ? MediaQuery.of(context).size.height * 0.8
             : MediaQuery.of(context).size.height * 0.6,
         decoration: BoxDecoration(
-            color: light, borderRadius: BorderRadius.circular(10)),
+            color: light,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [
+              BoxShadow(
+                  color: dark.withOpacity(.5),
+                  offset: Offset(3, 3),
+                  blurRadius: 10)
+            ]),
         child: Container(
           child: Center(
               child: Column(

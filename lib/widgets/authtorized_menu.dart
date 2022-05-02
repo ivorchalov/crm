@@ -70,9 +70,15 @@ class _AuthtorizedMenuState extends State<AuthtorizedMenu> {
                 height: 40,
               ),
               _buildAcc(),
+              SizedBox(
+                height: 40,
+              ),
+              Divider(),
+              SizedBox(
+                height: 40,
+              ),
               Padding(
-                padding: EdgeInsets.only(
-                    left: MediaQuery.of(context).size.width * 0.31),
+                padding: EdgeInsets.only(left: 15, bottom: 20),
                 child: Stack(
                   children: [
                     IconButton(
@@ -95,13 +101,6 @@ class _AuthtorizedMenuState extends State<AuthtorizedMenu> {
                         ))
                   ],
                 ),
-              ),
-              SizedBox(
-                height: 40,
-              ),
-              Divider(),
-              SizedBox(
-                height: 40,
               ),
               Padding(
                 padding: EdgeInsets.only(left: 20, bottom: 20),

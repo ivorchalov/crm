@@ -6,8 +6,10 @@ class NeumorphismButton extends StatefulWidget {
   final Widget child;
   final double width;
   final double height;
+  final EdgeInsets? padding;
+  final EdgeInsets? margin;
   const NeumorphismButton(
-      {Key? key, required this.child, this.width = 200, this.height = 50})
+      {Key? key, required this.child, this.width = 200, this.height = 50, this.padding, this.margin})
       : super(key: key);
 
   @override
@@ -33,6 +35,8 @@ class _NeumorfismButtonState extends State<NeumorphismButton> {
         });
       },
       child: AnimatedContainer(
+        padding: widget.padding,
+        margin: widget.margin,
         width: widget.width,
         height: widget.height,
         duration: Duration(milliseconds: 100),

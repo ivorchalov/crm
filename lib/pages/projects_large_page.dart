@@ -41,6 +41,7 @@ class _ProjectsLargeState extends State<ProjectsLarge> {
             padding: EdgeInsets.all(20),
             children: [
               GridView.builder(
+                  padding: EdgeInsets.all(50),
                   physics: NeverScrollableScrollPhysics(),
                   shrinkWrap: true,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
