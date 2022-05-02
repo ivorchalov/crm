@@ -71,7 +71,8 @@ class _AuthtorizedMenuState extends State<AuthtorizedMenu> {
               ),
               _buildAcc(),
               Padding(
-                padding: EdgeInsets.only(left: 130),
+                padding: EdgeInsets.only(
+                    left: MediaQuery.of(context).size.width * 0.31),
                 child: Stack(
                   children: [
                     IconButton(
@@ -81,8 +82,8 @@ class _AuthtorizedMenuState extends State<AuthtorizedMenu> {
                           color: dark.withOpacity(.7),
                         )),
                     Positioned(
-                        top: 7,
-                        right: 7,
+                        top: 8,
+                        right: 10,
                         child: Container(
                           width: 12,
                           height: 12,
@@ -153,6 +154,9 @@ class _AuthtorizedMenuState extends State<AuthtorizedMenu> {
                   UserCompact(name: "Ivan", surname: "Ivanov")
                 ],
               )
-            : Container();
+            : Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [UserCompact(name: "Ivan", surname: "Ivanov")],
+              );
   }
 }

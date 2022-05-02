@@ -1,6 +1,8 @@
 import 'package:crm/constants/colors.dart';
 import 'package:crm/widgets/custom_text.dart';
+import 'package:crm/widgets/forgotpassword_large.dart';
 import 'package:crm/widgets/neumorphismbutton.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class LoginSignupLarge extends StatefulWidget {
@@ -86,15 +88,7 @@ class _LoginSignupLargeState extends State<LoginSignupLarge> {
                                 width: MediaQuery.of(context).size.width,
                                 child: CustomText(text: "Войти")),
                           ),
-                          InkWell(
-                            highlightColor: Colors.transparent,
-                            hoverColor: Colors.transparent,
-                            onTap: () {},
-                            child: CustomText(
-                              text: "Забыли пароль?",
-                              textDecoration: TextDecoration.underline,
-                            ),
-                          ),
+                          ForgotPasswordLarge(),
                           InkWell(
                             highlightColor: Colors.transparent,
                             hoverColor: Colors.transparent,
@@ -142,7 +136,7 @@ class _LoginSignupLargeState extends State<LoginSignupLarge> {
                 )),
                 content: Container(
                   width: MediaQuery.of(context).size.width * 0.25,
-                  height: MediaQuery.of(context).size.height * 0.5,
+                  height: MediaQuery.of(context).size.height * 0.6,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -198,28 +192,50 @@ class _LoginSignupLargeState extends State<LoginSignupLarge> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 20, vertical: 10),
+                                child: NeumorphismButton(
+                                    width: MediaQuery.of(context).size.width,
+                                    child:
+                                        CustomText(text: "Зарегистрироваться")),
+                              ),
                             ],
                           )),
                       Expanded(
                           child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
-                          Container(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            child: NeumorphismButton(
-                                width: MediaQuery.of(context).size.width,
-                                child: CustomText(text: "Зарегистрироваться")),
+                          RichText(
+                              textAlign: TextAlign.center,
+                              text: TextSpan(children: [
+                                TextSpan(
+                                    text: "Нажимая на кнопку, вы даете ",
+                                    style: TextStyle(
+                                        color: lightGrey, fontSize: 14)),
+                                TextSpan(
+                                    text: "согласие",
+                                    style: TextStyle(
+                                        color: lightGrey,
+                                        fontSize: 14,
+                                        decoration: TextDecoration.underline),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {}),
+                                TextSpan(
+                                    text:
+                                        " на обработку своих персональных данных.",
+                                    style: TextStyle(
+                                        color: lightGrey, fontSize: 14))
+                              ])),
+                          CustomText(
+                            text:
+                                "При регистрации вы получаете демо-доступ на 1 месяц",
+                            size: 18,
+                            weight: FontWeight.bold,
                           ),
-                          // InkWell(
-                          //   highlightColor: Colors.transparent,
-                          //   hoverColor: Colors.transparent,
-                          //   onTap: () {},
-                          //   child: CustomText(
-                          //     text: "Забыли пароль?",
-                          //     textDecoration: TextDecoration.underline,
-                          //   ),
-                          // ),
                           InkWell(
                             highlightColor: Colors.transparent,
                             hoverColor: Colors.transparent,

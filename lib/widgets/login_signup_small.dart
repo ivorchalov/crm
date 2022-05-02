@@ -1,7 +1,10 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:crm/constants/colors.dart';
 import 'package:crm/widgets/custom_text.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import 'forgotpassword_small.dart';
 import 'neumorphismbutton.dart';
 
 class loginSignupSmall extends StatefulWidget {
@@ -83,15 +86,7 @@ class _loginSignupSmallState extends State<loginSignupSmall> {
                       SizedBox(
                         height: 10,
                       ),
-                      InkWell(
-                        highlightColor: Colors.transparent,
-                        hoverColor: Colors.transparent,
-                        onTap: () {},
-                        child: CustomText(
-                          text: "Забыли пароль?",
-                          textDecoration: TextDecoration.underline,
-                        ),
-                      ),
+                      ForgotPasswordSmall(),
                       SizedBox(
                         height: 20,
                       ),
@@ -134,7 +129,7 @@ class _loginSignupSmallState extends State<loginSignupSmall> {
               return StatefulBuilder(builder: ((context, setState) {
                 return Container(
                   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 10),
-                  height: MediaQuery.of(context).size.height * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.8,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -192,27 +187,49 @@ class _loginSignupSmallState extends State<loginSignupSmall> {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: NeumorphismButton(
+                                width: MediaQuery.of(context).size.width,
+                                child: CustomText(text: "Зарегистрироваться")),
+                          ),
                         ],
                       )),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                        child: NeumorphismButton(
-                            width: MediaQuery.of(context).size.width,
-                            child: CustomText(text: "Зарегистрироваться")),
+                      RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(children: [
+                            TextSpan(
+                                text: "Нажимая на кнопку, вы даете ",
+                                style:
+                                    TextStyle(color: lightGrey, fontSize: 14)),
+                            TextSpan(
+                                text: "согласие",
+                                style: TextStyle(
+                                    color: lightGrey,
+                                    fontSize: 14,
+                                    decoration: TextDecoration.underline),
+                                recognizer: TapGestureRecognizer()
+                                  ..onTap = () {}),
+                            TextSpan(
+                                text:
+                                    " на обработку своих персональных данных.",
+                                style:
+                                    TextStyle(color: lightGrey, fontSize: 14))
+                          ])),
+                      SizedBox(
+                        height: 10,
                       ),
-                      // SizedBox(
-                      //   height: 10,
-                      // ),
-                      // InkWell(
-                      //   highlightColor: Colors.transparent,
-                      //   hoverColor: Colors.transparent,
-                      //   onTap: () {},
-                      //   child: CustomText(
-                      //     text: "Забыли пароль?",
-                      //     textDecoration: TextDecoration.underline,
-                      //   ),
-                      // ),
+                      AutoSizeText(
+                        "При регистрации вы получаете демо-доступ на 1 месяц",
+                        maxLines: 2,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
                       SizedBox(
                         height: 20,
                       ),
@@ -244,8 +261,14 @@ class _loginSignupSmallState extends State<loginSignupSmall> {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
+        Container(
+          margin: EdgeInsets.only(right: 10),
+          width: 1,
+          height: 32,
+          color: dark,
+        ),
         _buildLogin(),
         SizedBox(
           width: 10,

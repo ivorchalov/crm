@@ -11,7 +11,7 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
-  bool isAuthorized = false; // * true to check how authorized looks like
+  bool isAuthorized = true; // * true to check how authorized looks like
   @override
   Widget build(BuildContext context) {
     return isAuthorized

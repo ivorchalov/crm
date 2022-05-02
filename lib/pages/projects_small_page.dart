@@ -17,6 +17,16 @@ class ProjectsSmall extends StatefulWidget {
 class _ProjectsSmallState extends State<ProjectsSmall> {
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey();
 
+  List cards = [
+    CreateProject(),
+    ProjectCard(),
+    ProjectCard(),
+    ProjectCard(),
+    ProjectCard(),
+    ProjectCard(),
+    ProjectCard(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,10 +40,17 @@ class _ProjectsSmallState extends State<ProjectsSmall> {
           child: ListView(
             padding: EdgeInsets.all(20),
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [ProjectCard(), CreateProject()],
-              ),
+              ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: cards.length,
+                  itemBuilder: (context, index) {
+                    return cards[cards.length - index - 1];
+                  }),
+              // Column(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [ProjectCard(), CreateProject()],
+              // ),
               Divider(),
               FooterSmall(),
             ],

@@ -111,6 +111,9 @@ class _UnauthorizedMenuItemsState extends State<UnauthorizedMenuItems> {
                   _buildLoginsignup(),
                 ],
               )
-            : Container();
+            : Container(
+                alignment: Alignment.centerRight,
+                child: _buildLoginsignup(),
+              );
   }
 }

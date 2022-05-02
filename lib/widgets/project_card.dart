@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../constants/colors.dart';
@@ -25,51 +26,64 @@ class _ProjectCardState extends State<ProjectCard> {
             : MediaQuery.of(context).size.height * 0.6,
         decoration: BoxDecoration(
             color: light, borderRadius: BorderRadius.circular(10)),
-        child: InkWell(
-          onTap: () {},
+        child: Container(
           child: Center(
               child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               CustomText(
                 text: "Название проекта",
                 size: 24,
                 weight: FontWeight.bold,
               ),
+              RichText(
+                text: TextSpan(
+                    text: "URL",
+                    style: TextStyle(
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                        color: active),
+                    recognizer: TapGestureRecognizer()..onTap = () {}),
+              ),
+              CustomText(
+                text: "Активен",
+                weight: FontWeight.bold,
+              ),
               Divider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(text: "Тип проекта"),
-                  CustomText(text: "Тип проекта"),
+                  CustomText(text: "Оплачен до:"),
+                  CustomText(text: "01.01.2023"),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(text: "Компания"),
-                  CustomText(text: "Компания"),
+                  CustomText(text: "Тарифный план:"),
+                  CustomText(text: "План А"),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(text: "Домен"),
-                  CustomText(text: "Домен"),
+                  CustomText(text: "Пользователи:"),
+                  CustomText(text: "1000"),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(text: "URL"),
-                  CustomText(text: "URL"),
+                  CustomText(text: "Проекты в месяц:"),
+                  CustomText(text: "50"),
                 ],
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CustomText(text: "Администратор"),
-                  CustomText(text: "Администратор"),
+                  CustomText(text: "Диск:"),
+                  CustomText(text: "25GB"),
                 ],
               ),
             ],
